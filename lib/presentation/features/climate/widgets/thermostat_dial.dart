@@ -54,8 +54,9 @@ class _ThermostatDialState extends State<ThermostatDial> {
 
     // Clamp to valid range
     if (normalizedAngle < startDeg) normalizedAngle = startDeg;
-    if (normalizedAngle > startDeg + sweepDeg)
+    if (normalizedAngle > startDeg + sweepDeg) {
       normalizedAngle = startDeg + sweepDeg;
+    }
 
     double fraction = (normalizedAngle - startDeg) / sweepDeg;
 
