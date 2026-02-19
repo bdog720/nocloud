@@ -57,18 +57,18 @@ class ClimateCard extends StatelessWidget {
           // Header
           Text(
             deviceName,
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 8),
           Text(
             state.mode == ClimateMode.off
                 ? 'Off'
                 : 'Current: ${state.currentTemperature.toStringAsFixed(1)}°',
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: Colors.grey,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(color: Colors.grey),
           ),
           const SizedBox(height: 32),
 

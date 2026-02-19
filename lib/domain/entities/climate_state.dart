@@ -1,4 +1,5 @@
 enum ClimateMode { off, cool, heat, auto, fanOnly, dry }
+
 enum FanMode { low, medium, high, auto }
 
 class ClimateState {

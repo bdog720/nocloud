@@ -43,25 +43,28 @@ class _ThermostatDialState extends State<ThermostatDial> {
     double degrees = angle * 180 / pi;
 
     double normalizedAngle = degrees;
-    if (normalizedAngle < 90) { // The end part of the arc (0 to 45)
-       normalizedAngle += 360;
+    if (normalizedAngle < 90) {
+      // The end part of the arc (0 to 45)
+      normalizedAngle += 360;
     }
-    
+
     // Convert constants to degrees for comparison
     const double startDeg = 135;
     const double sweepDeg = 270;
-    
+
     // Clamp to valid range
     if (normalizedAngle < startDeg) normalizedAngle = startDeg;
-    if (normalizedAngle > startDeg + sweepDeg) normalizedAngle = startDeg + sweepDeg;
+    if (normalizedAngle > startDeg + sweepDeg)
+      normalizedAngle = startDeg + sweepDeg;
 
     double fraction = (normalizedAngle - startDeg) / sweepDeg;
-    
-    double newTemp = widget.minTemp + fraction * (widget.maxTemp - widget.minTemp);
-    
+
+    double newTemp =
+        widget.minTemp + fraction * (widget.maxTemp - widget.minTemp);
+
     // Snap to 0.5
     double snapped = (newTemp * 2).round() / 2;
-    
+
     if (snapped != widget.targetTemp) {
       widget.onTargetTempChanged?.call(snapped);
     }
@@ -87,11 +90,11 @@ class _ThermostatDialState extends State<ThermostatDial> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                   Text(
+                  Text(
                     '${widget.currentTemp.toStringAsFixed(1)}°',
-                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                      color: Colors.grey,
-                    ),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.headlineSmall?.copyWith(color: Colors.grey),
                   ),
                   Text(
                     '${widget.targetTemp.toStringAsFixed(1)}°',
@@ -175,7 +178,7 @@ class _DialPainter extends CustomPainter {
     final thumbPaint = Paint()
       ..color = Colors.white
       ..style = PaintingStyle.fill;
-    
+
     final shadowPaint = Paint()
       ..color = Colors.black.withValues(alpha: 0.2)
       ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 4);
@@ -186,8 +189,8 @@ class _DialPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant _DialPainter oldDelegate) {
-     return oldDelegate.targetTemp != targetTemp || 
-            oldDelegate.currentTemp != currentTemp ||
-            oldDelegate.activeColor != activeColor;
+    return oldDelegate.targetTemp != targetTemp ||
+        oldDelegate.currentTemp != currentTemp ||
+        oldDelegate.activeColor != activeColor;
   }
 }

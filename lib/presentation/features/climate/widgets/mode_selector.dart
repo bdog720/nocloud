@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+
 import 'package:declare_app/domain/entities/climate_state.dart';
 
 class ModeSelector extends StatelessWidget {

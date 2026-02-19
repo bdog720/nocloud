@@ -27,8 +27,8 @@ class MdnsDiscoveryService {
       try {
         await for (final SrvResourceRecord srvRecord
             in _client.lookup<SrvResourceRecord>(
-          ResourceRecordQuery.service(domainName),
-        )) {
+              ResourceRecordQuery.service(domainName),
+            )) {
           srv = srvRecord;
         }
       } catch (e) {
@@ -41,8 +41,8 @@ class MdnsDiscoveryService {
       try {
         await for (final IPAddressResourceRecord ipRecord
             in _client.lookup<IPAddressResourceRecord>(
-          ResourceRecordQuery.addressIPv4(srv.target),
-        )) {
+              ResourceRecordQuery.addressIPv4(srv.target),
+            )) {
           ip = ipRecord;
         }
       } catch (e) {
@@ -55,8 +55,8 @@ class MdnsDiscoveryService {
       try {
         await for (final TxtResourceRecord txtRecord
             in _client.lookup<TxtResourceRecord>(
-          ResourceRecordQuery.text(domainName),
-        )) {
+              ResourceRecordQuery.text(domainName),
+            )) {
           txt = txtRecord;
         }
       } catch (e) {
@@ -70,11 +70,13 @@ class MdnsDiscoveryService {
       // Remove the service suffix if present
       // e.g. "my-device._esphomelib._tcp.local" -> "my-device"
       if (deviceName.endsWith(name)) {
-        deviceName =
-            deviceName.substring(0, deviceName.length - name.length - 1);
+        deviceName = deviceName.substring(
+          0,
+          deviceName.length - name.length - 1,
+        );
       } else if (deviceName.contains('.')) {
-          // Fallback: take the first part
-          deviceName = deviceName.split('.').first;
+        // Fallback: take the first part
+        deviceName = deviceName.split('.').first;
       }
 
       String? macAddress;

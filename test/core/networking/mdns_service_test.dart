@@ -33,47 +33,63 @@ void main() {
     const mac = 'aabbccddeeff';
 
     // 1. PTR Record
-    when(() => mockClient.lookup<PtrResourceRecord>(
-          any(that: isA<ResourceRecordQuery>()),
-        )).thenAnswer((_) => Stream.fromIterable([
-          PtrResourceRecord(ptrName, 4500, domainName: deviceName),
-        ]));
+    when(
+      () => mockClient.lookup<PtrResourceRecord>(
+        any(that: isA<ResourceRecordQuery>()),
+      ),
+    ).thenAnswer(
+      (_) => Stream.fromIterable([
+        PtrResourceRecord(ptrName, 4500, domainName: deviceName),
+      ]),
+    );
 
     // 2. SRV Record
-    when(() => mockClient.lookup<SrvResourceRecord>(
-          any(that: isA<ResourceRecordQuery>()),
-        )).thenAnswer((_) => Stream.fromIterable([
-          SrvResourceRecord(
-            deviceName,
-            4500,
-            target: targetName,
-            port: port,
-            weight: 0,
-            priority: 0,
-          ),
-        ]));
+    when(
+      () => mockClient.lookup<SrvResourceRecord>(
+        any(that: isA<ResourceRecordQuery>()),
+      ),
+    ).thenAnswer(
+      (_) => Stream.fromIterable([
+        SrvResourceRecord(
+          deviceName,
+          4500,
+          target: targetName,
+          port: port,
+          weight: 0,
+          priority: 0,
+        ),
+      ]),
+    );
 
     // 3. IP Record
-    when(() => mockClient.lookup<IPAddressResourceRecord>(
-          any(that: isA<ResourceRecordQuery>()),
-        )).thenAnswer((_) => Stream.fromIterable([
-          IPAddressResourceRecord(
-            targetName,
-            4500,
-            address: InternetAddress(ipAddress),
-          ),
-        ]));
+    when(
+      () => mockClient.lookup<IPAddressResourceRecord>(
+        any(that: isA<ResourceRecordQuery>()),
+      ),
+    ).thenAnswer(
+      (_) => Stream.fromIterable([
+        IPAddressResourceRecord(
+          targetName,
+          4500,
+          address: InternetAddress(ipAddress),
+        ),
+      ]),
+    );
 
     // 4. TXT Record
-    when(() => mockClient.lookup<TxtResourceRecord>(
-          any(that: isA<ResourceRecordQuery>()),
-        )).thenAnswer((_) => Stream.fromIterable([
-          TxtResourceRecord(
-            deviceName,
-            4500,
-            text: 'mac=$mac\nversion=2023.10.0',
-          ),
-        ]));
+    when(
+      () => mockClient.lookup<TxtResourceRecord>(
+        any(that: isA<ResourceRecordQuery>()),
+      ),
+    ).thenAnswer(
+      (_) => Stream.fromIterable([
+        TxtResourceRecord(
+          deviceName,
+          4500,
+          text: 'mac=$mac\nversion=2023.10.0',
+        ),
+      ]),
+    );
 
     final result = await service.startDiscovery().first;
 
@@ -81,7 +97,7 @@ void main() {
     expect(result.ip, ipAddress);
     expect(result.port, port);
     expect(result.macAddress, mac);
-    
+
     verify(() => mockClient.start()).called(1);
   });
 }
