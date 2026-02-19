@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:declare_app/core/networking/mdns_service.dart';
-import 'package:declare_app/domain/entities/discovered_device.dart';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:multicast_dns/multicast_dns.dart';

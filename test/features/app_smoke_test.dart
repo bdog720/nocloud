@@ -9,6 +9,7 @@ void main() {
     await tester.pumpWidget(const DeclareApp());
 
     // Verify that our app starts.
-    expect(find.text('Declare: ESPHome Controller'), findsOneWidget);
+    expect(find.text('Climate Demo'), findsOneWidget);
+    expect(find.text('Living Room AC'), findsOneWidget);
   });
 }

@@ -28,7 +28,9 @@ Thank you for your interest in contributing to "Declare"! We want to build the b
 3.  Add tests for your changes.
 4.  Run `flutter test` to ensure no regressions.
 5.  Submit a PR targeting `develop`.
-6.  Provide a clear description of the problem and solution.
+6.  **Review Required:** All PRs require approval from a code owner before merging.
+7.  **CI Checks:** All PRs must pass automated build, lint, and test checks.
+8.  Provide a clear description of the problem and solution.
 7.  Attach screenshots/videos for UI changes.
 
 ## Development Workflow
