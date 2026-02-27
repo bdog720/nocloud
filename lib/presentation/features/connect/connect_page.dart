@@ -1,3 +1,4 @@
+import 'package:nocloud/core/di/service_locator.dart';
 import 'package:nocloud/core/persistence/device_persistence_service.dart';
 import 'package:nocloud/domain/entities/saved_device.dart';
 import 'package:nocloud/presentation/features/climate/device_control_page.dart';
@@ -14,7 +15,7 @@ class _ConnectPageState extends State<ConnectPage> {
   final _ipController = TextEditingController(text: '192.168.1.100'); // Default for convenience
   final _nameController = TextEditingController(text: 'Living Room AC');
   final _pskController = TextEditingController();
-  final _persistenceService = DevicePersistenceService();
+  final _persistenceService = getIt<DevicePersistenceService>();
 
   @override
   Widget build(BuildContext context) {

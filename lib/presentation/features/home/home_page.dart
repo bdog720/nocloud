@@ -1,3 +1,4 @@
+import 'package:nocloud/core/di/service_locator.dart';
 import 'package:nocloud/core/networking/mdns_service.dart';
 import 'package:nocloud/core/persistence/device_persistence_service.dart';
 import 'package:nocloud/domain/entities/discovered_device.dart';
@@ -20,7 +21,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late final MdnsDiscoveryService _discoveryService;
-  final DevicePersistenceService _persistenceService = DevicePersistenceService();
+  late final DevicePersistenceService _persistenceService;
   
   final Set<DiscoveredDevice> _discoveredDevices = {};
   List<SavedDevice> _savedDevices = [];
@@ -29,7 +30,8 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    _discoveryService = widget.discoveryService ?? MdnsDiscoveryService();
+    _discoveryService = widget.discoveryService ?? getIt<MdnsDiscoveryService>();
+    _persistenceService = getIt<DevicePersistenceService>();
     _loadSavedDevices();
     _startDiscovery();
   }
