@@ -4,6 +4,9 @@ import 'package:nocloud/domain/entities/discovered_device.dart';
 import 'package:nocloud/domain/entities/saved_device.dart';
 import 'package:nocloud/presentation/features/climate/device_control_page.dart';
 import 'package:nocloud/presentation/features/connect/connect_page.dart';
+import 'package:nocloud/presentation/features/home/dialogs/connect_dialog.dart';
+import 'package:nocloud/presentation/features/home/widgets/saved_devices_list.dart';
+import 'package:nocloud/presentation/features/home/widgets/discovered_devices_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 
@@ -131,11 +134,33 @@ class _HomePageState extends State<HomePage> {
           
           if (_savedDevices.isNotEmpty) ...[
             _buildSectionHeader('Saved Devices'),
-            _buildSavedDevicesList(),
+            SavedDevicesList(
+              savedDevices: _savedDevices,
+              onDeviceTap: _connectToSaved,
+              onDeviceLongPress: (device) => showDeleteDialog(
+                context: context,
+                device: device,
+                persistenceService: _persistenceService,
+                onDeleted: _loadSavedDevices,
+              ),
+            ),
           ],
           
           _buildSectionHeader('Nearby Devices'),
-          _buildDiscoveredDevicesList(),
+          DiscoveredDevicesList(
+            discoveredDevices: _discoveredDevices,
+            savedDevices: _savedDevices,
+            isSearching: _isSearching,
+            onDeviceTap: (device) => showConnectDialog(
+              context: context,
+              device: device,
+              persistenceService: _persistenceService,
+              onConnected: (saved) {
+                _loadSavedDevices();
+                _connectToSaved(saved);
+              },
+            ),
+          ),
           
           const SliverToBoxAdapter(child: SizedBox(height: 100)),
         ],
@@ -168,84 +193,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _buildSavedDevicesList() {
-    return SliverList(
-      delegate: SliverChildBuilderDelegate(
-        (context, index) {
-          final device = _savedDevices[index];
-          return _buildDeviceCard(
-            name: device.name,
-            ip: device.ip,
-            onTap: () => _connectToSaved(device),
-            onLongPress: () => _confirmDelete(device),
-            isSaved: true,
-          );
-        },
-        childCount: _savedDevices.length,
-      ),
-    );
-  }
-
-  Widget _buildDiscoveredDevicesList() {
-    // Filter out devices that are already saved (by IP or ID)
-    final filtered = _discoveredDevices.where((d) => 
-      !_savedDevices.any((s) => s.ip == d.ip)
-    ).toList();
-
-    if (filtered.isEmpty && !_isSearching) {
-      return const SliverToBoxAdapter(
-        child: Center(
-          child: Padding(
-            padding: EdgeInsets.all(32.0),
-            child: Text('No new devices found nearby.', style: TextStyle(color: Colors.grey)),
-          ),
-        ),
-      );
-    }
-
-    return SliverList(
-      delegate: SliverChildBuilderDelegate(
-        (context, index) {
-          final device = filtered[index];
-          return _buildDeviceCard(
-            name: device.name,
-            ip: device.ip,
-            onTap: () => _showConnectDialog(device),
-            isSaved: false,
-          );
-        },
-        childCount: filtered.length,
-      ),
-    );
-  }
-
-  Widget _buildDeviceCard({
-    required String name,
-    required String ip,
-    required VoidCallback onTap,
-    VoidCallback? onLongPress,
-    bool isSaved = false,
-  }) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-      child: Card(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        child: ListTile(
-          contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-          leading: CircleAvatar(
-            backgroundColor: isSaved ? Colors.blue : Colors.grey[300],
-            child: Icon(Icons.ac_unit, color: isSaved ? Colors.white : Colors.grey[600]),
-          ),
-          title: Text(name, style: const TextStyle(fontWeight: FontWeight.bold)),
-          subtitle: Text(ip),
-          trailing: const Icon(Icons.chevron_right),
-          onTap: onTap,
-          onLongPress: onLongPress,
-        ),
-      ),
-    );
-  }
-
   void _connectToSaved(SavedDevice device) {
     Navigator.push(
       context,
@@ -255,77 +202,6 @@ class _HomePageState extends State<HomePage> {
           name: device.name,
           noisePsk: device.noisePsk,
         ),
-      ),
-    );
-  }
-
-  void _confirmDelete(SavedDevice device) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Forget Device?'),
-        content: Text('Do you want to remove ${device.name} from your saved devices?'),
-        actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
-          TextButton(
-            onPressed: () async {
-              await _persistenceService.deleteDevice(device.id);
-              if (!context.mounted) return;
-              Navigator.pop(context);
-              _loadSavedDevices();
-            },
-            child: const Text('Forget', style: TextStyle(color: Colors.red)),
-          ),
-        ],
-      ),
-    );
-  }
-
-  void _showConnectDialog(DiscoveredDevice device) {
-    final pskController = TextEditingController();
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text('Connect to ${device.name}'),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text('IP: ${device.ip}'),
-            const SizedBox(height: 16),
-            TextField(
-              controller: pskController,
-              decoration: const InputDecoration(
-                labelText: 'Encryption Key (Optional)',
-                hintText: '32-byte Base64 key',
-                border: OutlineInputBorder(),
-              ),
-            ),
-          ],
-        ),
-        actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
-          ElevatedButton(
-            onPressed: () async {
-              final psk = pskController.text.trim();
-              
-              // Save the device
-              final saved = SavedDevice(
-                id: device.ip, // Using IP as ID for now
-                name: device.name,
-                ip: device.ip,
-                port: device.port,
-                noisePsk: psk.isNotEmpty ? psk : null,
-              );
-              await _persistenceService.saveDevice(saved);
-              
-              if (!context.mounted) return;
-              Navigator.pop(context);
-              _loadSavedDevices();
-              _connectToSaved(saved);
-            },
-            child: const Text('Connect'),
-          ),
-        ],
       ),
     );
   }
