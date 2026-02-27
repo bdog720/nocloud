@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:declare_app/core/utils/temperature_converter.dart';
+import 'package:nocloud/core/utils/temperature_converter.dart';
 
 void main() {
   group('TemperatureConverter', () {

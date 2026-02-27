@@ -2,19 +2,19 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "declare_app",
+            "name": "nocloud",
             "request": "launch",
             "type": "dart",
             "flutterMode": "debug"
         },
         {
-            "name": "declare_app (profile)",
+            "name": "nocloud (profile)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "declare_app (release)",
+            "name": "nocloud (release)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"

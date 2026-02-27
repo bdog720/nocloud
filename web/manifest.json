@@ -1,6 +1,6 @@
 {
-    "name": "declare_app",
-    "short_name": "declare_app",
+    "name": "Nocloud",
+    "short_name": "Nocloud",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

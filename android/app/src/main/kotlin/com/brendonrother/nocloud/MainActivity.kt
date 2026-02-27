@@ -1,4 +1,4 @@
-package com.brendonrother.declare.declare_app
+package com.brendonrother.nocloud
 
 import io.flutter.embedding.android.FlutterActivity
 

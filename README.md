@@ -1,4 +1,4 @@
-# Declare - ESPHome Mobile Controller
+# Nocloud - ESPHome Mobile Controller
 
 A user-friendly mobile app (Android first, then iOS) that allows non-technical users to control and set up ESPHome devices locally. Think "Google Home/Apple Home" but specifically for the ESPHome ecosystem, removing the need for Home Assistant.
 

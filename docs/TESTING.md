@@ -1,7 +1,7 @@
 # Testing Strategy
 
 ## Overview
-This document outlines the testing strategy for "Declare", ensuring high code quality and reliability. We follow the standard Flutter testing pyramid: Unit Tests, Widget Tests, and Integration Tests.
+This document outlines the testing strategy for "Nocloud", ensuring high code quality and reliability. We follow the standard Flutter testing pyramid: Unit Tests, Widget Tests, and Integration Tests.
 
 ## Test Pyramid
 

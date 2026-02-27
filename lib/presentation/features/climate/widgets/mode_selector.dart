@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-import 'package:declare_app/domain/entities/climate_state.dart';
+import 'package:nocloud/domain/entities/climate_state.dart';
 
 class ModeSelector extends StatelessWidget {
   final ClimateMode currentMode;

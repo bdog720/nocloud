@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "com.brendonrother.declare" "\0"
-            VALUE "FileDescription", "declare_app" "\0"
+            VALUE "CompanyName", "com.brendonrother.nocloud" "\0"
+            VALUE "FileDescription", "Nocloud" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "declare_app" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2026 com.brendonrother.declare. All rights reserved." "\0"
-            VALUE "OriginalFilename", "declare_app.exe" "\0"
-            VALUE "ProductName", "declare_app" "\0"
+            VALUE "InternalName", "Nocloud" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2026 com.brendonrother.nocloud. All rights reserved." "\0"
+            VALUE "OriginalFilename", "nocloud.exe" "\0"
+            VALUE "ProductName", "Nocloud" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

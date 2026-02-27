@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:declare_app/domain/entities/climate_state.dart';
-import 'package:declare_app/presentation/features/climate/widgets/mode_selector.dart';
-import 'package:declare_app/presentation/features/climate/widgets/thermostat_dial.dart';
+import 'package:nocloud/domain/entities/climate_state.dart';
+import 'package:nocloud/presentation/features/climate/widgets/mode_selector.dart';
+import 'package:nocloud/presentation/features/climate/widgets/thermostat_dial.dart';
 
 class ClimateCard extends StatelessWidget {
   final String deviceName;

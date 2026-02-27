@@ -1,6 +1,6 @@
-# Contributing to Declare
+# Contributing to Nocloud
 
-Thank you for your interest in contributing to "Declare"! We want to build the best local ESPHome controller possible.
+Thank you for your interest in contributing to "Nocloud"! We want to build the best local ESPHome controller possible.
 
 ## Getting Started
 

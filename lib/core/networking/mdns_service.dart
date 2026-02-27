@@ -1,5 +1,6 @@
 import 'package:multicast_dns/multicast_dns.dart';
-import 'package:declare_app/domain/entities/discovered_device.dart';
+import 'package:nocloud/domain/entities/discovered_device.dart';
+import 'package:flutter/foundation.dart';
 
 class MdnsDiscoveryService {
   final MDnsClient _client;
@@ -11,6 +12,10 @@ class MdnsDiscoveryService {
   ///
   /// Listens for `_esphomelib._tcp.local` services.
   Stream<DiscoveredDevice> startDiscovery() async* {
+    if (kIsWeb) {
+      // mDNS is not supported in the browser.
+      return;
+    }
     if (!_isStarted) {
       await _client.start();
       _isStarted = true;

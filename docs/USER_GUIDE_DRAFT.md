@@ -1,6 +1,6 @@
-# Declare: User Guide (Draft)
+# Nocloud: User Guide (Draft)
 
-**Declare** is your private, local controller for ESPHome devices. No cloud, no tracking, just control.
+**Nocloud** is your private, local controller for ESPHome devices. No cloud, no tracking, just control.
 
 ## Getting Started
 
@@ -28,4 +28,4 @@
 *   Verify the API encryption key matches (if configured).
 
 ## Privacy
-Declare communicates directly with your devices. No data leaves your network.
+Nocloud communicates directly with your devices. No data leaves your network.
