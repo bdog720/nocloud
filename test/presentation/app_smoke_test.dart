@@ -4,9 +4,9 @@ import 'package:nocloud/core/di/service_locator.dart';
 import 'package:nocloud/main.dart';
 
 void main() {
-  setUp(() {
+  setUp(() async {
     // Reset and re-register services before each test
-    getIt.reset();
+    await getIt.reset();
     setupServiceLocator();
   });
 
