@@ -17,19 +17,16 @@ class SavedDevicesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverList(
-      delegate: SliverChildBuilderDelegate(
-        (context, index) {
-          final device = savedDevices[index];
-          return DeviceCard(
-            name: device.name,
-            ip: device.ip,
-            onTap: () => onDeviceTap(device),
-            onLongPress: () => onDeviceLongPress(device),
-            isSaved: true,
-          );
-        },
-        childCount: savedDevices.length,
-      ),
+      delegate: SliverChildBuilderDelegate((context, index) {
+        final device = savedDevices[index];
+        return DeviceCard(
+          name: device.name,
+          ip: device.ip,
+          onTap: () => onDeviceTap(device),
+          onLongPress: () => onDeviceLongPress(device),
+          isSaved: true,
+        );
+      }, childCount: savedDevices.length),
     );
   }
 }

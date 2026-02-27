@@ -22,7 +22,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   late final MdnsDiscoveryService _discoveryService;
   late final DevicePersistenceService _persistenceService;
-  
+
   final Set<DiscoveredDevice> _discoveredDevices = {};
   List<SavedDevice> _savedDevices = [];
   bool _isSearching = true;
@@ -30,7 +30,8 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    _discoveryService = widget.discoveryService ?? getIt<MdnsDiscoveryService>();
+    _discoveryService =
+        widget.discoveryService ?? getIt<MdnsDiscoveryService>();
     _persistenceService = getIt<DevicePersistenceService>();
     _loadSavedDevices();
     _startDiscovery();
@@ -51,7 +52,7 @@ class _HomePageState extends State<HomePage> {
         _isSearching = true;
       });
     }
-    
+
     _discoveryService.startDiscovery().listen(
       (device) {
         if (mounted) {
@@ -75,7 +76,7 @@ class _HomePageState extends State<HomePage> {
         }
       },
     );
-    
+
     Future.delayed(const Duration(seconds: 15), () {
       if (mounted && _isSearching) {
         setState(() {
@@ -118,7 +119,10 @@ class _HomePageState extends State<HomePage> {
                 padding: const EdgeInsets.all(16),
                 child: Row(
                   children: [
-                    const Icon(Icons.warning_amber_rounded, color: Colors.orange),
+                    const Icon(
+                      Icons.warning_amber_rounded,
+                      color: Colors.orange,
+                    ),
                     const SizedBox(width: 16),
                     Expanded(
                       child: Text(
@@ -130,10 +134,10 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-          
+
           if (_isSearching)
             const SliverToBoxAdapter(child: LinearProgressIndicator()),
-          
+
           if (_savedDevices.isNotEmpty) ...[
             _buildSectionHeader('Saved Devices'),
             SavedDevicesList(
@@ -147,7 +151,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ],
-          
+
           _buildSectionHeader('Nearby Devices'),
           DiscoveredDevicesList(
             discoveredDevices: _discoveredDevices,
@@ -163,7 +167,7 @@ class _HomePageState extends State<HomePage> {
               },
             ),
           ),
-          
+
           const SliverToBoxAdapter(child: SizedBox(height: 100)),
         ],
       ),

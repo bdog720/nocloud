@@ -19,7 +19,9 @@ void main() {
       mockDiscoveryService = MockMdnsDiscoveryService();
     });
 
-    testWidgets('Should discover and display a device', (WidgetTester tester) async {
+    testWidgets('Should discover and display a device', (
+      WidgetTester tester,
+    ) async {
       final device = DiscoveredDevice(
         name: 'test-esphome',
         ip: '192.168.1.100',
@@ -27,8 +29,9 @@ void main() {
       );
 
       // Mock the discovery stream
-      when(() => mockDiscoveryService.startDiscovery())
-          .thenAnswer((_) => Stream.fromIterable([device]));
+      when(
+        () => mockDiscoveryService.startDiscovery(),
+      ).thenAnswer((_) => Stream.fromIterable([device]));
       when(() => mockDiscoveryService.stop()).thenAnswer((_) async {});
 
       // Build the app with the mock service

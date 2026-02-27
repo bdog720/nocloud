@@ -17,7 +17,6 @@ class DeviceControlPage extends StatefulWidget {
     this.noisePsk,
   });
 
-
   @override
   State<DeviceControlPage> createState() => _DeviceControlPageState();
 }

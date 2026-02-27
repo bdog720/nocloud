@@ -21,7 +21,7 @@ class DevicePersistenceService {
 
   Future<void> saveDevice(SavedDevice device) async {
     final List<SavedDevice> devices = await getSavedDevices();
-    
+
     // Replace if already exists (by ID)
     final int index = devices.indexWhere((d) => d.id == device.id);
     if (index != -1) {
@@ -30,15 +30,19 @@ class DevicePersistenceService {
       devices.add(device);
     }
 
-    final String jsonString = jsonEncode(devices.map((d) => d.toJson()).toList());
+    final String jsonString = jsonEncode(
+      devices.map((d) => d.toJson()).toList(),
+    );
     await _storage.write(key: _key, value: jsonString);
   }
 
   Future<void> deleteDevice(String deviceId) async {
     final List<SavedDevice> devices = await getSavedDevices();
     devices.removeWhere((d) => d.id == deviceId);
-    
-    final String jsonString = jsonEncode(devices.map((d) => d.toJson()).toList());
+
+    final String jsonString = jsonEncode(
+      devices.map((d) => d.toJson()).toList(),
+    );
     await _storage.write(key: _key, value: jsonString);
   }
 }

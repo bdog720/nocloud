@@ -6,7 +6,7 @@ abstract class ClimateRepository {
 
   Future<void> connect(String ip, int port, {String? noisePsk});
   Future<void> disconnect();
-  
+
   Future<void> setTemperature(double temp);
   Future<void> setMode(ClimateMode mode);
 }

@@ -6,7 +6,7 @@ class NoiseFraming {
   static const int headerLength = 3; // indicator (1) + length (2)
 
   /// Encapsulates a payload into a Noise frame header.
-  /// Note: The input payload should already be encrypted for messages, 
+  /// Note: The input payload should already be encrypted for messages,
   /// or raw for handshake parts (though handshake parts are often considered 'encrypted' with empty key).
   static Uint8List createHeader(int payloadLength) {
     final header = Uint8List(headerLength);

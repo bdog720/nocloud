@@ -12,7 +12,9 @@ class ConnectPage extends StatefulWidget {
 }
 
 class _ConnectPageState extends State<ConnectPage> {
-  final _ipController = TextEditingController(text: '192.168.1.100'); // Default for convenience
+  final _ipController = TextEditingController(
+    text: '192.168.1.100',
+  ); // Default for convenience
   final _nameController = TextEditingController(text: 'Living Room AC');
   final _pskController = TextEditingController();
   final _persistenceService = getIt<DevicePersistenceService>();
@@ -64,7 +66,7 @@ class _ConnectPageState extends State<ConnectPage> {
                 final ip = _ipController.text.trim();
                 final name = _nameController.text.trim();
                 final psk = _pskController.text.trim();
-                
+
                 if (ip.isNotEmpty && name.isNotEmpty) {
                   // Save the device
                   final saved = SavedDevice(
@@ -78,7 +80,6 @@ class _ConnectPageState extends State<ConnectPage> {
 
                   if (!context.mounted) return;
                   Navigator.pushReplacement(
-
                     context,
                     MaterialPageRoute(
                       builder: (context) => DeviceControlPage(
@@ -88,10 +89,8 @@ class _ConnectPageState extends State<ConnectPage> {
                       ),
                     ),
                   );
-
                 }
               },
-
 
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 16),

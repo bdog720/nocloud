@@ -20,9 +20,9 @@ class DiscoveredDevicesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Filter out devices that are already saved (by IP)
-    final filtered = discoveredDevices.where((d) =>
-      !savedDevices.any((s) => s.ip == d.ip)
-    ).toList();
+    final filtered = discoveredDevices
+        .where((d) => !savedDevices.any((s) => s.ip == d.ip))
+        .toList();
 
     if (filtered.isEmpty && !isSearching) {
       return const SliverToBoxAdapter(
@@ -39,18 +39,15 @@ class DiscoveredDevicesList extends StatelessWidget {
     }
 
     return SliverList(
-      delegate: SliverChildBuilderDelegate(
-        (context, index) {
-          final device = filtered[index];
-          return DeviceCard(
-            name: device.name,
-            ip: device.ip,
-            onTap: () => onDeviceTap(device),
-            isSaved: false,
-          );
-        },
-        childCount: filtered.length,
-      ),
+      delegate: SliverChildBuilderDelegate((context, index) {
+        final device = filtered[index];
+        return DeviceCard(
+          name: device.name,
+          ip: device.ip,
+          onTap: () => onDeviceTap(device),
+          isSaved: false,
+        );
+      }, childCount: filtered.length),
     );
   }
 }

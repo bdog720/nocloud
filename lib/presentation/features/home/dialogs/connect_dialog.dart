@@ -73,7 +73,9 @@ void showDeleteDialog({
     context: context,
     builder: (context) => AlertDialog(
       title: const Text('Forget Device?'),
-      content: Text('Do you want to remove ${device.name} from your saved devices?'),
+      content: Text(
+        'Do you want to remove ${device.name} from your saved devices?',
+      ),
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),
