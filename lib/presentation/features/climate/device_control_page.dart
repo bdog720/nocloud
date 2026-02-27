@@ -1,4 +1,4 @@
-import 'package:nocloud/core/networking/esphome_connection_service.dart';
+import 'package:nocloud/core/networking/connection/esphome_connection_service.dart';
 import 'package:nocloud/data/repositories/climate_repository_impl.dart';
 import 'package:nocloud/domain/entities/climate_state.dart';
 import 'package:nocloud/domain/repositories/climate_repository.dart';

@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:typed_data';
-import 'package:nocloud/core/networking/protocol_handler.dart';
+import 'package:nocloud/core/networking/connection/protocol_handler.dart';
 import 'package:nocloud/core/networking/utils/varint.dart';
 
 class PlaintextProtocolHandler implements ProtocolHandler {

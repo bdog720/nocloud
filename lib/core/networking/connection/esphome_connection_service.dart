@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:nocloud/core/networking/generated/index.dart';
-import 'package:nocloud/core/networking/noise_protocol_handler.dart';
-import 'package:nocloud/core/networking/plaintext_protocol_handler.dart';
-import 'package:nocloud/core/networking/protocol_handler.dart';
+import 'package:nocloud/core/proto/generated/index.dart';
+import 'package:nocloud/core/networking/connection/noise_protocol_handler.dart';
+import 'package:nocloud/core/networking/connection/plaintext_protocol_handler.dart';
+import 'package:nocloud/core/networking/connection/protocol_handler.dart';
 import 'package:nocloud/core/networking/utils/varint.dart';
 import 'package:flutter/foundation.dart';
 import 'package:protobuf/protobuf.dart';
