@@ -1,8 +1,10 @@
+import 'package:nocloud/core/di/service_locator.dart';
 import 'package:nocloud/core/theme/app_theme.dart';
 import 'package:nocloud/presentation/features/home/home_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+  setupServiceLocator();
   runApp(const NocloudApp());
 }
 
@@ -20,6 +22,3 @@ class NocloudApp extends StatelessWidget {
     );
   }
 }
-
-
-
