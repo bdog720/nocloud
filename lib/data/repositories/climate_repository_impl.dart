@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:flutter/foundation.dart';
 
-import 'package:nocloud/core/networking/esphome_connection_service.dart';
-import 'package:nocloud/core/networking/generated/index.dart' as pb;
+import 'package:nocloud/core/networking/connection/esphome_connection_service.dart';
+import 'package:nocloud/core/proto/generated/index.dart' as pb;
 import 'package:nocloud/domain/entities/climate_state.dart';
 import 'package:nocloud/domain/repositories/climate_repository.dart';
 import 'package:protobuf/protobuf.dart';

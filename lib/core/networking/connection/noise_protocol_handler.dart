@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:nocloud/core/networking/noise/noise_framing.dart';
 import 'package:nocloud/core/networking/noise/noise_protocol.dart';
-import 'package:nocloud/core/networking/protocol_handler.dart';
+import 'package:nocloud/core/networking/connection/protocol_handler.dart';
 
 enum NoiseState { manual, hello, handshaking, ready, error }
 

@@ -1,5 +1,5 @@
 import 'package:nocloud/core/di/service_locator.dart';
-import 'package:nocloud/core/networking/mdns_service.dart';
+import 'package:nocloud/core/discovery/mdns_service.dart';
 import 'package:nocloud/core/persistence/device_persistence_service.dart';
 import 'package:nocloud/domain/entities/discovered_device.dart';
 import 'package:nocloud/domain/entities/saved_device.dart';

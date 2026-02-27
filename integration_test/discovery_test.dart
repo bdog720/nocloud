@@ -1,4 +1,4 @@
-import 'package:nocloud/core/networking/mdns_service.dart';
+import 'package:nocloud/core/discovery/mdns_service.dart';
 import 'package:nocloud/core/theme/app_theme.dart';
 import 'package:nocloud/domain/entities/discovered_device.dart';
 import 'package:nocloud/presentation/features/home/home_page.dart';
